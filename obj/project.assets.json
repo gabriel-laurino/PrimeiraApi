@@ -768,26 +768,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gabri\\.nuget\\packages\\": {}
+    "C:\\Users\\GabrielTrentinFerrei\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gabri\\OneDrive\\Documentos\\Faculdade Gabriel\\ADS\\2024\\C#\\PrimeiraApi\\PrimeiraApi.csproj",
+      "projectUniqueName": "C:\\Users\\GabrielTrentinFerrei\\OneDrive\\Documentos\\Faculdade Gabriel\\ADS\\2024\\C#\\PrimeiraApi\\PrimeiraApi.csproj",
       "projectName": "PrimeiraApi",
-      "projectPath": "C:\\Users\\Gabri\\OneDrive\\Documentos\\Faculdade Gabriel\\ADS\\2024\\C#\\PrimeiraApi\\PrimeiraApi.csproj",
-      "packagesPath": "C:\\Users\\Gabri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gabri\\OneDrive\\Documentos\\Faculdade Gabriel\\ADS\\2024\\C#\\PrimeiraApi\\obj\\",
+      "projectPath": "C:\\Users\\GabrielTrentinFerrei\\OneDrive\\Documentos\\Faculdade Gabriel\\ADS\\2024\\C#\\PrimeiraApi\\PrimeiraApi.csproj",
+      "packagesPath": "C:\\Users\\GabrielTrentinFerrei\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\GabrielTrentinFerrei\\OneDrive\\Documentos\\Faculdade Gabriel\\ADS\\2024\\C#\\PrimeiraApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Gabri\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\GabrielTrentinFerrei\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
