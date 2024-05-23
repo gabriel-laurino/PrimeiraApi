@@ -89,3 +89,4 @@ C:\Users\GabrielTrentinFerrei\OneDrive\Documentos\Faculdade Gabriel\ADS\2024\C#\
 C:\Users\GabrielTrentinFerrei\OneDrive\Documentos\Faculdade Gabriel\ADS\2024\C#\PrimeiraApi\bin\Debug\net8.0\scriptcs_bin\Debug\net8.0\PrimeiraApi.deps.json
 C:\Users\GabrielTrentinFerrei\OneDrive\Documentos\Faculdade Gabriel\ADS\2024\C#\PrimeiraApi\bin\Debug\net8.0\scriptcs_bin\Debug\net8.0\PrimeiraApi.runtimeconfig.json
 C:\Users\GabrielTrentinFerrei\OneDrive\Documentos\Faculdade Gabriel\ADS\2024\C#\PrimeiraApi\obj\Debug\net8.0\PrimeiraApi.sourcelink.json
+C:\Users\Gabri\OneDrive\Documentos\Faculdade Gabriel\ADS\2024\C#\PrimeiraApi\obj\Debug\net8.0\PrimeiraApi.sourcelink.json

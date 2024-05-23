@@ -7,6 +7,8 @@ using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
+string secretKey = "dfhviocsjserkvknkjsdajvbejnvjfjsdf";
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -15,7 +17,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuer = false,
             ValidateAudience = false,
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("abc"))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey))
         };
     });
 
@@ -47,47 +49,41 @@ app.MapPost("/login", async (HttpContext context) =>
 });
 
 // Rota Segura
-
 app.MapGet("/rotaSegura", async (HttpContext context) =>
 {
     if (!context.Request.Headers.ContainsKey("Authorization"))
     {
         context.Response.StatusCode = StatusCodes.Status401Unauthorized;
         await context.Response.WriteAsync("Token não fornecido");
-        return "Token não fornecido";
+        return;
     }
 
-    // Obter o token
     var token = context.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
 
-    // Validar o token
-    var tokenValidator = new TokenValidator("dfhviocsjserkvknkjsdajvbejnvjfjsdf");
+    var tokenValidator = new TokenValidator(secretKey);
     if (!tokenValidator.ValidarToken(token, out ClaimsPrincipal? principal))
     {
         context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-        await context.Response.WriteAsync("Token Invalido");
-        return "Token invalido";
+        await context.Response.WriteAsync("Token inválido");
+        return;
     }
 
-    // Se o token é válido: Dar andamento na lógica do endPoint.
     await context.Response.WriteAsync("Autorizado");
-    return "Autorizado";
 });
 
 string GenerateToken(string data)
 {
     var tokenHandler = new JwtSecurityTokenHandler();
-    var secretKey = Encoding.ASCII.GetBytes("dfhviocsjserkvknkjsdajvbejnvjfjsdf"); // Esta chave será gravada em uma variável de ambiente
     var tokenDescriptor = new SecurityTokenDescriptor
     {
-        Expires = DateTime.UtcNow.AddHours(1), // O token expira em 1 hora
+        Expires = DateTime.UtcNow.AddHours(1),
         SigningCredentials = new SigningCredentials(
-            new SymmetricSecurityKey(secretKey),
+            new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)),
             SecurityAlgorithms.HmacSha256Signature
         )
     };
     var token = tokenHandler.CreateToken(tokenDescriptor);
-    return tokenHandler.WriteToken(token); // Converte o token em string
+    return tokenHandler.WriteToken(token);
 }
 
 app.Run();
