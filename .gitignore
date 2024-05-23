@@ -1,0 +1,11 @@
+*.pem
+bin
+obj
+scriptcs_bin
+*.json
+*.html
+*.http
+*.sln
+properties
+.editorconfig
+Backup.txt
