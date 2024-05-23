@@ -25,6 +25,21 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
+string GenerateToken(string data)
+{
+    var tokenHandler = new JwtSecurityTokenHandler();
+    var tokenDescriptor = new SecurityTokenDescriptor
+    {
+        Expires = DateTime.UtcNow.AddHours(1),
+        SigningCredentials = new SigningCredentials(
+            new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)),
+            SecurityAlgorithms.HmacSha256Signature
+        )
+    };
+    var token = tokenHandler.CreateToken(tokenDescriptor);
+    return tokenHandler.WriteToken(token);
+}
+
 app.MapPost("/login", async (HttpContext context) =>
 {
     using var reader = new StreamReader(context.Request.Body);
@@ -54,7 +69,7 @@ app.MapGet("/rotaSegura", async (HttpContext context) =>
     if (!context.Request.Headers.ContainsKey("Authorization"))
     {
         context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-        await context.Response.WriteAsync("Token não fornecido");
+        await context.Response.WriteAsync("\nToken não fornecido");
         return;
     }
 
@@ -64,26 +79,11 @@ app.MapGet("/rotaSegura", async (HttpContext context) =>
     if (!tokenValidator.ValidarToken(token, out ClaimsPrincipal? principal))
     {
         context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-        await context.Response.WriteAsync("Token inválido");
+        await context.Response.WriteAsync("\nToken inválido");
         return;
     }
 
-    await context.Response.WriteAsync("Autorizado");
+    await context.Response.WriteAsync("\nAutorizado");
 });
-
-string GenerateToken(string data)
-{
-    var tokenHandler = new JwtSecurityTokenHandler();
-    var tokenDescriptor = new SecurityTokenDescriptor
-    {
-        Expires = DateTime.UtcNow.AddHours(1),
-        SigningCredentials = new SigningCredentials(
-            new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)),
-            SecurityAlgorithms.HmacSha256Signature
-        )
-    };
-    var token = tokenHandler.CreateToken(tokenDescriptor);
-    return tokenHandler.WriteToken(token);
-}
 
 app.Run();
